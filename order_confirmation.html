@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed!</title>
+    <style>
+        :root {
+            --primary-color: #28a745; /* Green for success */
+            --secondary-color: #f8f9fa;
+            --text-color: #333;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        .confirmation-box {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            max-width: 350px;
+            margin: 20px;
+        }
+        .icon {
+            font-size: 60px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 25px;
+        }
+        .action-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .action-btn.primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .action-btn.secondary {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="confirmation-box">
+        <div class="icon">✓</div>
+        <h1>Order Confirmed!</h1>
+        <p>Your Supermall order **#SM12345** has been placed successfully.</p>
+        <p style="font-size: 14px;">A receipt has been sent to your email.</p>
+
+        <a href="order_tracking.html" class="action-btn primary">Track My Order</a>
+        <a href="index.html" class="action-btn secondary">Continue Shopping</a>
+    </div>
+
+</body>
+</html>
