@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Vendor Review</title>
+    <style>
+        /* (Base styles reused from admin_dashboard.html for consistency) */
+        :root { --primary-color: #5d5dff; --secondary-color: #f4f7f9; --text-color: #333; --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; display: flex; background-color: var(--secondary-color); color: var(--text-color); }
+        .sidebar { width: 220px; background: #2c3e50; color: white; padding: 20px 0; height: 100vh; position: fixed; }
+        .logo { text-align: center; font-size: 24px; font-weight: bold; margin-bottom: 30px; color: var(--primary-color); }
+        .nav-link { display: block; padding: 12px 20px; color: #bdc3c7; text-decoration: none; transition: background 0.2s; }
+        .nav-link:hover, .nav-link.active { background: #34495e; color: white; border-left: 4px solid var(--primary-color); padding-left: 16px; }
+        .main-content { margin-left: 220px; flex-grow: 1; padding: 30px; }
+        .header h1 { font-size: 28px; margin: 0 0 20px 0; color: var(--text-color); }
+        
+        /* Review Specific Styles */
+        .review-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+        .vendor-details-card, .review-actions-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+        }
+        .vendor-details-card h2, .review-actions-card h2 {
+            font-size: 20px;
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 20px;
+        }
+        .detail-row {
+            padding: 8px 0;
+            font-size: 15px;
+            border-bottom: 1px dotted #eee;
+        }
+        .detail-row strong {
+            display: inline-block;
+            width: 150px;
+            color: #666;
+        }
+        .document-link {
+            display: block;
+            margin-top: 10px;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .action-button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .approve { background-color: #28a745; color: white; }
+        .reject { background-color: #dc3545; color: white; }
+        .note-field {
+            width: 100%;
+            min-height: 100px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <div class="logo">Supermall Admin</div>
+        <a href="admin_dashboard.html" class="nav-link">🏠 Dashboard</a>
+        <a href="admin_vendor_review.html" class="nav-link active">📝 Vendor Review (4)</a>
+        <a href="admin_vendor_manage.html" class="nav-link">🏢 Vendor Management</a>
+        <a href="admin_logistics.html" class="nav-link">🚚 Logistics View</a>
+        <a href="admin_disputes.html" class="nav-link">⚠️ Disputes</a>
+        <a href="admin_analytics.html" class="nav-link">📈 Analytics</a>
+    </nav>
+
+    <div class="main-content">
+        <header class="header">
+            <h1>Vendor Application Review (FR-A.1)</h1>
+        </header>
+
+        <div class="review-grid">
+            <div class="vendor-details-card">
+                <h2>Application: Fresh Local Produce Co.</h2>
+                <div class="detail-row">
+                    <strong>Vendor ID:</strong> V-00451
+                </div>
+                 <div class="detail-row">
+                    <strong>Contact Name:</strong> Sarah Chen
+                </div>
+                <div class="detail-row">
+                    <strong>Email:</strong> sarah.chen@localfresh.com
+                </div>
+                <div class="detail-row">
+                    <strong>Business Type:</strong> Independent Grocer
+                </div>
+                <div class="detail-row">
+                    <strong>Service Area:</strong> 10km radius
+                </div>
+                
+                <h2>Documentation</h2>
+                <a href="#" class="document-link">View Business Registration Certificate (.pdf)</a>
+                <a href="#" class="document-link">View Insurance Details (.pdf)</a>
+                <a href="#" class="document-link">View Sample Product List (.xlsx)</a>
+                
+                <h2>Compliance Checks</h2>
+                <div class="detail-row">
+                    <strong>Geo Check:</strong> Pass (Verified Location)
+                </div>
+                <div class="detail-row">
+                    <strong>Background Check:</strong> Pending
+                </div>
+            </div>
+
+            <div class="review-actions-card">
+                <h2>Decision</h2>
+                <textarea class="note-field" placeholder="Internal notes for approval/rejection reason..."></textarea>
+                
+                <button class="action-button approve" onclick="alert('Vendor Approved! Email notification sent.')">Approve Vendor</button>
+                <button class="action-button reject" onclick="alert('Vendor Rejected. Notes captured.')">Reject Vendor</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
