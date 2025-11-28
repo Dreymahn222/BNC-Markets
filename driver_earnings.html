@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Earnings - Supermall Logistics</title>
+    <style>
+        :root {
+            --primary-color: #4CAF50; /* Driver Accent Color (Green) */
+            --secondary-color: #e8f5e9;
+            --text-color: #333;
+            --info-color: #007bff;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            padding-bottom: 70px; /* Space for bottom nav */
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .header h1 { margin: 0; font-size: 20px; }
+        .content { padding: 15px; }
+
+        /* Weekly Summary Card */
+        .summary-card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--info-color);
+        }
+        .summary-card h2 { margin-top: 0; font-size: 18px; color: var(--info-color); }
+        .summary-value {
+            font-size: 36px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        .summary-detail {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            padding: 5px 0;
+            border-top: 1px dashed #eee;
+        }
+        .payout-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background-color: var(--info-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Job History List */
+        .history-list h2 { font-size: 18px; margin-bottom: 15px; }
+        .job-item {
+            background: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .job-details { flex-grow: 1; }
+        .job-details strong { display: block; font-size: 16px; }
+        .job-details span { font-size: 12px; color: #666; }
+        .job-payout {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        /* Bottom Navigation (Reused) */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0; height: 60px;
+            background-color: white; box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+            display: flex; justify-content: space-around; align-items: center; z-index: 1000;
+        }
+        .nav-item { display: flex; flex-direction: column; align-items: center; font-size: 12px; color: #666; padding: 5px 0; text-decoration: none; }
+        .nav-item.active { color: var(--primary-color); }
+        .nav-icon { font-size: 24px; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>My Earnings</h1>
+    </div>
+    
+    <div class="content">
+        <div class="summary-card">
+            <h2>Current Weekly Earnings</h2>
+            <div class="summary-value">$325.80</div>
+            
+            <div class="summary-detail">
+                <span>Jobs Completed:</span>
+                <strong>38</strong>
+            </div>
+             <div class="summary-detail">
+                <span>Total Mileage:</span>
+                <strong>145 km</strong>
+            </div>
+            <div class="summary-detail">
+                <span>Next Scheduled Payout:</span>
+                <strong style="color: var(--info-color);">Friday, 5 PM</strong>
+            </div>
+            
+            <button class="payout-btn" onclick="alert('Payout request submitted. Funds will arrive within 24 hours.')">
+                Request Early Payout
+            </button>
+        </div>
+
+        <div class="history-list">
+            <h2>Job History - Today</h2>
+            
+            <div class="job-item">
+                <div class="job-details">
+                    <strong>Delivery #1055</strong>
+                    <span>Pickup: Elite Electronics | 4.5 km</span>
+                </div>
+                <div class="job-payout">$8.50</div>
+            </div>
+
+            <div class="job-item">
+                <div class="job-details">
+                    <strong>Route #1056 (Multi-Stop)</strong>
+                    <span>2 Drop-offs | 7.1 km</span>
+                </div>
+                <div class="job-payout">$16.20</div>
+            </div>
+
+            <div class="job-item">
+                <div class="job-details">
+                    <strong>Delivery #1057</strong>
+                    <span>Pickup: Green Grocer | 3.0 km</span>
+                </div>
+                <div class="job-payout">$7.00</div>
+            </div>
+            
+            <h2 style="margin-top: 25px;">Job History - Yesterday</h2>
+            <div class="job-item">
+                <div class="job-details">
+                    <strong>Route #1040 (Finished)</strong>
+                    <span>4 Stops | 15 km</span>
+                </div>
+                <div class="job-payout">$28.90</div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="driver_jobs.html" class="nav-item">
+            <span class="nav-icon">⭐</span>
+            <span>Jobs</span>
+        </a>
+        <a href="driver_route.html" class="nav-item">
+            <span class="nav-icon">🗺️</span>
+            <span>Route</span>
+        </a>
+        <a href="driver_earnings.html" class="nav-item active">
+            <span class="nav-icon">💲</span>
+            <span>Earnings</span>
+        </a>
+    </nav>
+</body>
+</html>
