@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Delivery</title>
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #f8f9fa;
+            --text-color: #333;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding-bottom: 80px;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+        }
+        .header { padding: 15px; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .header h1 { margin: 0; font-size: 20px; }
+        .progress-bar { display: flex; justify-content: space-between; padding: 10px 0; font-size: 12px; }
+        .progress-step { color: #666; }
+        .progress-step.active { font-weight: bold; color: var(--primary-color); }
+        .content { padding: 15px; }
+        .section-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .section-card h2 { font-size: 18px; margin-top: 0; }
+        .address-option {
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .address-option.selected { border-color: var(--primary-color); background-color: #e9f5ff; }
+        .delivery-slot {
+            display: flex;
+            justify-content: space-between;
+            background: var(--secondary-color);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .delivery-slot.selected { border: 2px solid var(--primary-color); background-color: #e9f5ff; }
+        .sticky-footer {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: white; box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            padding: 15px;
+        }
+        .total-summary { font-size: 18px; font-weight: bold; text-align: right; margin-bottom: 10px; }
+        .continue-btn {
+            width: 100%; padding: 15px; background-color: var(--primary-color);
+            color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Checkout</h1>
+        <div class="progress-bar">
+            <span class="progress-step active">1. Delivery</span>
+            <span class="progress-step">2. Payment</span>
+            <span class="progress-step">3. Confirm</span>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="section-card">
+            <h2>Delivery Address</h2>
+            <div class="address-option selected">
+                <strong>Home:</strong> 123 Main Street, Apt 4B
+            </div>
+            <div class="address-option">
+                <strong>Work:</strong> 789 Business Ave, Floor 10
+            </div>
+            <button style="color: var(--primary-color); border: none; background: none; margin-top: 10px;">+ Add New Address</button>
+        </div>
+
+        <div class="section-card">
+            <h2>Delivery Time</h2>
+            <div class="delivery-slot selected">
+                <span>**Standard (2 Hours)**</span>
+                <span>FREE</span>
+            </div>
+            <div class="delivery-slot">
+                <span>Express (45 Mins)</span>
+                <span>+$7.50</span>
+            </div>
+            <p style="font-size: 14px; margin-top: 15px;">**Orders from multiple vendors will be consolidated where possible.**</p>
+        </div>
+    </div>
+
+    <div class="sticky-footer">
+        <div class="total-summary">Total: $229.49</div>
+        <a href="checkout_payment.html"><button class="continue-btn">Continue to Payment</button></a>
+    </div>
+</body>
+</html>
