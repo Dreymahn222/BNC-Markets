@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Vendor Management</title>
+    <style>
+        /* (Base styles reused from admin_dashboard.html for consistency) */
+        :root { --primary-color: #5d5dff; --secondary-color: #f4f7f9; --text-color: #333; --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; display: flex; background-color: var(--secondary-color); color: var(--text-color); }
+        .sidebar { width: 220px; background: #2c3e50; color: white; height: 100vh; position: fixed; }
+        .logo { text-align: center; font-size: 24px; font-weight: bold; margin-bottom: 30px; color: var(--primary-color); padding: 20px 0; }
+        .nav-link { display: block; padding: 12px 20px; color: #bdc3c7; text-decoration: none; transition: background 0.2s; }
+        .nav-link:hover, .nav-link.active { background: #34495e; color: white; border-left: 4px solid var(--primary-color); padding-left: 16px; }
+        .main-content { margin-left: 220px; flex-grow: 1; padding: 30px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header h1 { font-size: 28px; margin: 0; }
+        
+        /* Table and Search Styles */
+        .management-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+        }
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .toolbar input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 300px;
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        .data-table th, .data-table td {
+            padding: 12px 10px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        .data-table th {
+            background-color: var(--secondary-color);
+            font-weight: bold;
+        }
+        .status-active { color: #28a745; font-weight: bold; }
+        .status-suspended { color: #dc3545; font-weight: bold; }
+        .action-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <div class="logo">Supermall Admin</div>
+        <a href="admin_dashboard.html" class="nav-link">🏠 Dashboard</a>
+        <a href="admin_vendor_review.html" class="nav-link">📝 Vendor Review</a>
+        <a href="admin_vendor_manage.html" class="nav-link active">🏢 Vendor Management (FR-A.2)</a>
+        <a href="admin_logistics.html" class="nav-link">🚚 Logistics View</a>
+        <a href="admin_disputes.html" class="nav-link">⚠️ Disputes</a>
+        <a href="admin_analytics.html" class="nav-link">📈 Analytics</a>
+    </nav>
+
+    <div class="main-content">
+        <header class="header">
+            <h1>Active Vendor Directory (450 Vendors)</h1>
+            <button style="background-color: #28a745; color: white; padding: 10px 15px; border: none; border-radius: 8px;">Export Data</button>
+        </header>
+
+        <div class="management-card">
+            <div class="toolbar">
+                <input type="text" placeholder="Search by Vendor ID or Name...">
+                <select style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                    <option>Filter by Status</option>
+                    <option>Active</option>
+                    <option>Suspended</option>
+                </select>
+            </div>
+            
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Store Name</th>
+                        <th>Category</th>
+                        <th>Commission % (FR-A.2)</th>
+                        <th>GMV (YTD)</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>V-00101</td>
+                        <td>Elite Electronics</td>
+                        <td>Electronics</td>
+                        <td>12.0%</td>
+                        <td>$850,000</td>
+                        <td class="status-active">Active</td>
+                        <td>
+                            <a href="#" class="action-link">Edit</a>
+                            <a href="#" class="action-link" style="color: #dc3545;">Suspend</a>
+                        </td>
+                    </tr>
+                    <tr>
+                         <td>V-00250</td>
+                        <td>Green Grocer</td>
+                        <td>Groceries</td>
+                        <td>15.0%</td>
+                        <td>$210,000</td>
+                        <td class="status-active">Active</td>
+                        <td>
+                            <a href="#" class="action-link">Edit</a>
+                            <a href="#" class="action-link">Suspend</a>
+                        </td>
+                    </tr>
+                    <tr>
+                         <td>V-00045</td>
+                        <td>Style House Boutique</td>
+                        <td>Fashion</td>
+                        <td>10.0%</td>
+                        <td>$15,000</td>
+                        <td class="status-suspended">Suspended</td>
+                        <td>
+                            <a href="#" class="action-link">Edit</a>
+                            <a href="#" class="action-link" style="color: #28a745;">Activate</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
