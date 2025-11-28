@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Tracking</title>
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #f8f9fa;
+            --text-color: #333;
+            --progress-active: #28a745;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: var(--text-color);
+        }
+        .header { padding: 15px; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .header h1 { margin: 0; font-size: 20px; }
+        .map-container {
+            width: 100%;
+            height: 250px;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .tracking-info {
+            padding: 0 15px;
+        }
+        .order-meta {
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--secondary-color);
+            padding-bottom: 10px;
+        }
+        .order-meta p { margin: 5px 0; font-size: 14px; }
+        /* Vertical Timeline CSS */
+        .timeline {
+            position: relative;
+            padding: 15px 0 15px 30px;
+        }
+        .timeline::before { /* The vertical line */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10px;
+            height: 100%;
+            width: 2px;
+            background: var(--secondary-color);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        .timeline-item::before { /* The circle dot */
+            content: '';
+            position: absolute;
+            left: -24px;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #ccc;
+            border: 3px solid white;
+        }
+        .timeline-item.completed::before {
+            background: var(--progress-active);
+        }
+        .timeline-item.active::before {
+            background: var(--primary-color);
+            box-shadow: 0 0 0 3px var(--primary-color); /* Pulse effect */
+        }
+        .timeline-title { font-weight: bold; font-size: 16px; }
+        .timeline-time { font-size: 12px; color: #666; }
+        /* Contact Footer */
+        .contact-footer {
+            padding: 15px;
+            border-top: 1px solid var(--secondary-color);
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-around;
+        }
+        .contact-btn {
+            padding: 10px 20px;
+            border-radius: 20px;
+            background-color: var(--secondary-color);
+            border: 1px solid #ccc;
+            color: var(--primary-color);
+            cursor: pointer;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Order Tracking</h1>
+    </div>
+
+    <div class="map-container">
+        [Live Map Placeholder: Driver En Route]
+    </div>
+
+    <div class="tracking-info">
+        <div class="order-meta">
+            <p><strong>Order ID:</strong> SM12345</p>
+            <p><strong>Estimated Arrival:</strong> 15 minutes</p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item completed">
+                <div class="timeline-title">Order Placed</div>
+                <div class="timeline-time">7:30 AM</div>
+            </div>
+            <div class="timeline-item completed">
+                <div class="timeline-title">Vendor A: Preparing (Green Grocer)</div>
+                <div class="timeline-time">7:40 AM</div>
+            </div>
+            <div class="timeline-item completed">
+                <div class="timeline-title">Vendor B: Ready for Pickup (Elite Electronics)</div>
+                <div class="timeline-time">7:55 AM</div>
+            </div>
+            <div class="timeline-item active">
+                <div class="timeline-title">Out for Delivery (En Route)</div>
+                <div class="timeline-time">8:05 AM</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-title">Delivered</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact-footer">
+        <a href="tel:1234567890" class="contact-btn">Call Driver</a>
+        <button class="contact-btn">Contact Support</button>
+    </div>
+</body>
+</html>
