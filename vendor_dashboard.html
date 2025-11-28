@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Dashboard - Supermall</title>
+    <style>
+        :root {
+            --primary-color: #ff9800;
+            --secondary-color: #f8f8f8;
+            --text-color: #333;
+            --danger-color: #dc3545;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding-bottom: 60px; /* Space for bottom nav */
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+        }
+        .header {
+            padding: 15px;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .header h1 { margin: 0; font-size: 22px; color: var(--primary-color); }
+        .content { padding: 15px; }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .stat-value { font-size: 24px; font-weight: bold; color: var(--primary-color); }
+        .stat-label { font-size: 14px; color: #666; }
+
+        /* Order List Styles */
+        .section-card {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            padding: 15px;
+        }
+        .section-card h2 { font-size: 18px; margin-top: 0; border-bottom: 1px solid var(--secondary-color); padding-bottom: 10px; }
+        .order-item {
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .order-details { flex-grow: 1; }
+        .order-details strong { display: block; font-size: 16px; }
+        .order-details span { font-size: 12px; color: #666; }
+        .order-actions button {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .order-actions .accept { background-color: #28a745; margin-right: 5px; }
+        .order-actions .reject { background-color: var(--danger-color); }
+
+        /* Low Stock Alert */
+        .low-stock-item {
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+        }
+        .low-stock-item:last-child { border-bottom: none; }
+        .low-stock-item strong { color: var(--danger-color); }
+        .reorder-info { font-size: 12px; color: #666; margin-top: 5px; }
+        
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0; height: 60px;
+            background-color: white; box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+            display: flex; justify-content: space-around; align-items: center; z-index: 1000;
+        }
+        .nav-item { display: flex; flex-direction: column; align-items: center; font-size: 12px; color: var(--text-color); padding: 5px 0; text-decoration: none; }
+        .nav-item.active { color: var(--primary-color); }
+        .nav-icon { font-size: 24px; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Dashboard - My Store Name</h1>
+    </div>
+
+    <div class="content">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value">$1,250.00</div>
+                <div class="stat-label">Sales Today</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">4</div>
+                <div class="stat-label">New Orders (Pending)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">12</div>
+                <div class="stat-label" style="color: var(--danger-color);">Low Stock Items</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">$5,500.00</div>
+                <div class="stat-label">Next Payout (FR-V.7)</div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <h2>📦 Pending Orders</h2>
+            <div class="order-list">
+                <div class="order-item">
+                    <div class="order-details">
+                        <strong>#7001 - John D.</strong>
+                        <span>Total: $45.99 | Prep Time: 15 min</span>
+                    </div>
+                    <div class="order-actions">
+                        <button class="accept" onclick="alert('Order Accepted. Status: Preparing')">Accept</button>
+                        <button class="reject">Reject</button>
+                    </div>
+                </div>
+                <div class="order-item">
+                    <div class="order-details">
+                        <strong>#7002 - Mary C.</strong>
+                        <span>Total: $120.00 | Prep Time: 30 min</span>
+                    </div>
+                    <div class="order-actions">
+                        <button class="accept">Accept</button>
+                        <button class="reject">Reject</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <h2>⚠️ Low Stock Alerts</h2>
+            <div class="low-stock-list">
+                <div class="low-stock-item">
+                    <strong>Product: Organic Eggs (Doz)</strong>
+                    <p class="reorder-info">Stock: 5 (Min: 10). Suggested Reorder: 50</p>
+                    <a href="inventory_manager.html" style="color: var(--primary-color); font-size: 12px;">Update Inventory</a>
+                </div>
+                <div class="low-stock-item">
+                    <strong>Product: Wireless Mouse (Black)</strong>
+                    <p class="reorder-info">Stock: 2 (Min: 5). Suggested Reorder: 25</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="vendor_dashboard.html" class="nav-item active">
+            <span class="nav-icon">📊</span>
+            <span>Dashboard</span>
+        </a>
+        <a href="product_editor.html" class="nav-item">
+            <span class="nav-icon">📦</span>
+            <span>Products</span>
+        </a>
+        <a href="pos.html" class="nav-item">
+            <span class="nav-icon">💰</span>
+            <span>POS (FR-V.3)</span>
+        </a>
+        <a href="vendor_reports.html" class="nav-item">
+            <span class="nav-icon">📋</span>
+            <span>Reports</span>
+        </a>
+    </nav>
+</body>
+</html>
