@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories - Supermall</title>
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #f8f9fa;
+            --text-color: #333;
+            --light-gray: #ccc;
+            --card-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding-bottom: 60px; /* Space for bottom nav */
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background-color: #fff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .header a { text-decoration: none; color: var(--text-color); font-size: 20px; margin-right: 15px; }
+        .header h2 { margin: 0; font-size: 18px; }
+        .filter-bar {
+            position: sticky;
+            top: 0;
+            z-index: 500;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 15px;
+            background-color: #fff;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        .filter-bar button {
+            background: none;
+            border: 1px solid var(--light-gray);
+            border-radius: 20px;
+            padding: 5px 15px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .product-list-container {
+            padding: 15px;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        /* (Product card styles reused from index.html) */
+        .product-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+        .product-image {
+            width: 100%;
+            height: 120px;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #666;
+        }
+        .product-info { padding: 10px; }
+        .product-name { font-size: 14px; font-weight: bold; margin-bottom: 4px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+        .product-price { font-size: 16px; color: var(--primary-color); font-weight: bold; }
+        .product-vendor { font-size: 11px; color: #666; margin-top: 2px; }
+        /* Filter Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            z-index: 2000;
+            transform: translateY(100%);
+            transition: transform 0.3s ease-out;
+            padding: 20px;
+            overflow-y: scroll;
+        }
+        .modal.active { transform: translateY(0); }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .filter-group h3 { font-size: 16px; border-bottom: 1px solid var(--light-gray); padding-bottom: 5px; margin-top: 20px; }
+        .filter-options label { display: block; margin: 10px 0; font-size: 14px; }
+        .modal-footer { position: sticky; bottom: 0; background: white; padding-top: 10px; }
+        .modal-footer button { width: 100%; padding: 12px; background-color: var(--primary-color); color: white; border: none; border-radius: 8px; font-size: 16px; }
+
+        /* (Bottom Nav styles reused from index.html) */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0; height: 60px;
+            background-color: #fff; box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+            display: flex; justify-content: space-around; align-items: center; z-index: 1000;
+        }
+        .nav-item { display: flex; flex-direction: column; align-items: center; font-size: 12px; color: var(--text-color); padding: 5px 0; text-decoration: none; }
+        .nav-item.active { color: var(--primary-color); }
+        .nav-icon { font-size: 24px; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <a href="index.html">←</a>
+        <h2>All Groceries</h2>
+    </div>
+
+    <div class="filter-bar">
+        <button onclick="document.getElementById('filterModal').classList.add('active')">
+            Filter <span style="font-size: 10px;">(3 applied)</span>
+        </button>
+        <button>Sort By: Best Match ▼</button>
+    </div>
+
+    <div class="product-list-container">
+        <div class="product-grid">
+            <a href="product_detail.html" class="product-card">
+                <div class="product-image">Product Image Slot</div>
+                <div class="product-info">
+                    <div class="product-name">Organic Bananas</div>
+                    <div class="product-price">$0.69 / lb</div>
+                    <div class="product-vendor">Vendor: Green Grocer</div>
+                </div>
+            </a>
+             <a href="product_detail.html" class="product-card">
+                <div class="product-image">Product Image Slot</div>
+                <div class="product-info">
+                    <div class="product-name">Artisan Bread</div>
+                    <div class="product-price">$4.50</div>
+                    <div class="product-vendor">Vendor: The Bakery House</div>
+                </div>
+            </a>
+            </div>
+    </div>
+
+    <div id="filterModal" class="modal">
+        <div class="modal-header">
+            <h3>Filters</h3>
+            <a href="#" onclick="document.getElementById('filterModal').classList.remove('active')">Close X</a>
+        </div>
+
+        <div class="filter-group">
+            <h3>Price Range</h3>
+            <input type="range" min="0" max="100" value="50">
+        </div>
+
+        <div class="filter-group">
+            <h3>Vendors</h3>
+            <div class="filter-options">
+                <label><input type="checkbox" checked> Green Grocer</label>
+                <label><input type="checkbox"> The Bakery House</label>
+                <label><input type="checkbox"> Local Dairy Co.</label>
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <h3>Delivery Time</h3>
+            <div class="filter-options">
+                <label><input type="radio" name="delivery" checked> Under 1 Hour</label>
+                <label><input type="radio" name="delivery"> 1-2 Hours</label>
+                <label><input type="radio" name="delivery"> Next Day</label>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button onclick="document.getElementById('filterModal').classList.remove('active')">Apply Filters</button>
+        </div>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <span class="nav-icon">🏠</span><span>Home</span>
+        </a>
+        <a href="categories.html" class="nav-item active">
+            <span class="nav-icon">🏷️</span><span>Categories</span>
+        </a>
+        <a href="cart.html" class="nav-item">
+            <span class="nav-icon">🛒</span><span>Cart</span>
+        </a>
+        <a href="account.html" class="nav-item">
+            <span class="nav-icon">👤</span><span>Account</span>
+        </a>
+    </nav>
+</body>
+</html>
