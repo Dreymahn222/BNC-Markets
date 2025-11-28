@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supermall Sign Up</title>
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #f8f9fa;
+            --text-color: #333;
+            --input-border: #ccc;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            background-color: #fff;
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 40px;
+        }
+        .auth-container {
+            width: 100%;
+            max-width: 350px;
+        }
+        .social-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid var(--input-border);
+            border-radius: 8px;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #fff;
+        }
+        .social-btn.google { background-color: #db4437; color: white; border: none; }
+        .social-btn.facebook { background-color: #4267B2; color: white; border: none; }
+        .divider { display: flex; align-items: center; text-align: center; margin: 20px 0; font-size: 14px; color: #666; }
+        .divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid var(--input-border); margin: auto 10px; }
+        input[type="text"], input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid var(--input-border);
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        .primary-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .alt-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .alt-link a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <h1>Create Account</h1>
+
+        <button class="social-btn google">Sign up with Google</button>
+        <button class="social-btn facebook">Sign up with Facebook</button>
+
+        <div class="divider">OR</div>
+
+        <form id="signupForm">
+            <input type="text" id="name" placeholder="Full Name" required>
+            <input type="email" id="email" placeholder="Email Address" required>
+            <input type="password" id="password" placeholder="Create Password" required>
+            <button type="submit" class="primary-btn">Sign Up</button>
+        </form>
+
+        <div class="alt-link">
+            By signing up, you agree to our <a href="#">Terms and Conditions</a>.
+        </div>
+        <div class="alt-link">
+            Already have an account? <a href="login.html">Log In</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            // Placeholder for actual API call
+            alert(`Attempting signup for: ${name} (${email})`);
+            // On successful API response:
+            window.location.href = 'index.html'; 
+        });
+    </script>
+</body>
+</html>
