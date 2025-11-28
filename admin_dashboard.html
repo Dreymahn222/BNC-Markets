@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        :root {
+            --primary-color: #5d5dff;
+            --secondary-color: #f4f7f9;
+            --text-color: #333;
+            --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+        }
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 220px;
+            background: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            height: 100vh;
+            position: fixed;
+        }
+        .logo {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+        }
+        .nav-link {
+            display: block;
+            padding: 12px 20px;
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .nav-link:hover, .nav-link.active {
+            background: #34495e;
+            color: white;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 16px;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 220px;
+            flex-grow: 1;
+            padding: 30px;
+        }
+        .header {
+            margin-bottom: 30px;
+        }
+        .header h1 { font-size: 28px; margin: 0; color: var(--text-color); }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+        }
+        .stat-value { font-size: 32px; font-weight: bold; color: var(--primary-color); margin-bottom: 5px; }
+        .stat-label { font-size: 14px; color: #666; }
+
+        /* Widget Area */
+        .widget-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+        .widget {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+        }
+        .widget h2 { font-size: 20px; margin-top: 0; padding-bottom: 10px; border-bottom: 1px solid var(--secondary-color); }
+        
+        /* Lists inside widgets */
+        .list-item {
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+        .list-item:last-child { border-bottom: none; }
+        .list-item strong { color: var(--primary-color); }
+        .list-item span { font-size: 14px; }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <div class="logo">Supermall Admin</div>
+        <a href="admin_dashboard.html" class="nav-link active">🏠 Dashboard</a>
+        <a href="admin_vendor_review.html" class="nav-link">📝 Vendor Review (FR-A.1)</a>
+        <a href="admin_vendor_manage.html" class="nav-link">🏢 Vendor Management (FR-A.2)</a>
+        <a href="admin_logistics.html" class="nav-link">🚚 Logistics View</a>
+        <a href="admin_disputes.html" class="nav-link">⚠️ Disputes (FR-A.3)</a>
+        <a href="admin_analytics.html" class="nav-link">📈 Analytics (FR-A.4)</a>
+    </nav>
+
+    <div class="main-content">
+        <header class="header">
+            <h1>Platform Overview</h1>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value">$1.2M</div>
+                <div class="stat-label">GMV (Gross Merchandise Value)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">450</div>
+                <div class="stat-label">Active Vendors</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">25</div>
+                <div class="stat-label" style="color: #28a745;">Live Deliveries</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" style="color: #dc3545;">7</div>
+                <div class="stat-label">Pending Disputes (FR-A.3)</div>
+            </div>
+        </div>
+
+        <div class="widget-grid">
+            <div class="widget">
+                <h2>GMV Trend (Last 6 Months)</h2>
+                <div style="height: 300px; background: #e0eaff; border-radius: 5px; display: flex; align-items: center; justify-content: center;">
+                    [Chart Placeholder: Revenue Growth]
+                </div>
+            </div>
+
+            <div class="widget">
+                <h2>Urgent Tasks</h2>
+                <div class="list-item">
+                    <span>Vendor Applications</span>
+                    <strong>4 Pending (FR-A.1)</strong>
+                </div>
+                <div class="list-item">
+                    <span>Driver Payouts</span>
+                    <strong>$2,500 Due Today</strong>
+                </div>
+                <div class="list-item">
+                    <span>High-Priority Dispute</span>
+                    <strong>Order #9921</strong>
+                </div>
+                <div class="list-item">
+                    <span>Low Driver Coverage</span>
+                    <strong>Sector 4 Warning</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
