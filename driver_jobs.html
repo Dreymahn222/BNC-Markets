@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Jobs</title>
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #e8f5e9;
+            --text-color: #333;
+            --warning-color: #ff9800;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            padding-bottom: 70px; /* For bottom nav */
+        }
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .header h1 { margin: 0; font-size: 20px; }
+        .status-bar {
+            background-color: #66bb6a;
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .job-list { padding: 15px; }
+        .job-card {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--warning-color);
+        }
+        .job-card h2 { margin-top: 0; font-size: 18px; color: var(--warning-color); }
+        .details { margin-bottom: 10px; font-size: 14px; }
+        .details strong { display: block; margin-bottom: 5px; }
+        .payout {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        .accept-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        /* Bottom Navigation (Reused) */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0; height: 60px;
+            background-color: white; box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+            display: flex; justify-content: space-around; align-items: center; z-index: 1000;
+        }
+        .nav-item { display: flex; flex-direction: column; align-items: center; font-size: 12px; color: #666; padding: 5px 0; text-decoration: none; }
+        .nav-item.active { color: var(--primary-color); }
+        .nav-icon { font-size: 24px; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Supermall Logistics</h1>
+    </div>
+    
+    <div class="status-bar">
+        <span>Status: Online</span>
+        <span>Rating: 4.8 / Payouts: $150</span>
+    </div>
+
+    <div class="job-list">
+        <h2>Available Jobs (FR-D.2)</h2>
+
+        <div class="job-card">
+            <h2>New Job: Single Delivery</h2>
+            <div class="details">
+                <strong>Pickup:</strong> Elite Electronics (1.2 km away)<br>
+                <strong>Drop-off:</strong> 123 Main Street, Apt 5B<br>
+                <span>Distance: 4.5 km | Est. Time: 18 min</span>
+            </div>
+            <div class="payout">$8.50 Payout</div>
+            <button class="accept-btn" onclick="acceptJob('Job A')">Accept & Start Route</button>
+        </div>
+
+        <div class="job-card">
+            <h2>Multi-Stop Route</h2>
+            <div class="details">
+                <strong>Pickup:</strong> Green Grocer + Fashion Boutique<br>
+                <strong>Drop-off:</strong> 2 Customers (Optimized Route)<br>
+                <span>Distance: 7.1 km | Est. Time: 35 min</span>
+            </div>
+            <div class="payout">$16.20 Payout</div>
+            <button class="accept-btn" onclick="acceptJob('Job B')">Accept & Start Route</button>
+        </div>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="driver_jobs.html" class="nav-item active">
+            <span class="nav-icon">⭐</span>
+            <span>Jobs</span>
+        </a>
+        <a href="driver_route.html" class="nav-item">
+            <span class="nav-icon">🗺️</span>
+            <span>Route</span>
+        </a>
+        <a href="driver_earnings.html" class="nav-item">
+            <span class="nav-icon">💲</span>
+            <span>Earnings</span>
+        </a>
+    </nav>
+    
+    <script>
+        function acceptJob(jobId) {
+            alert(`Accepted ${jobId}. Starting routing now.`);
+            window.location.href = 'driver_route.html';
+        }
+    </script>
+</body>
+</html>
