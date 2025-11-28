@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Editor - Supermall</title>
+    <style>
+        :root {
+            --primary-color: #ff9800;
+            --secondary-color: #f8f8f8;
+            --text-color: #333;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding-bottom: 80px;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+        }
+        .header {
+            padding: 15px;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .header a { text-decoration: none; color: var(--text-color); font-size: 20px; margin-right: 15px; }
+        .header h1 { margin: 0; font-size: 20px; display: inline-block; }
+        .content { padding: 15px; }
+        .section-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .section-card h2 { font-size: 18px; margin-top: 0; border-bottom: 1px solid var(--secondary-color); padding-bottom: 10px; margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px; }
+        input[type="text"], input[type="number"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        textarea { resize: vertical; min-height: 100px; }
+        .image-upload-area {
+            border: 2px dashed #ccc;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .image-preview { display: flex; gap: 10px; overflow-x: scroll; margin-top: 10px; }
+        .image-preview div { width: 80px; height: 80px; background: #eee; border-radius: 5px; flex-shrink: 0; }
+        
+        /* Sticky Footer */
+        .sticky-footer {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: white; box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            padding: 15px;
+        }
+        .save-btn {
+            width: 100%; padding: 15px; background-color: #28a745; /* Green for Save */
+            color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <a href="vendor_dashboard.html">←</a>
+        <h1>Product Editor</h1>
+    </div>
+
+    <div class="content">
+        <form id="productForm">
+            <div class="section-card">
+                <h2>Product Details (FR-V.2)</h2>
+                <label for="name">Product Name</label>
+                <input type="text" id="name" required placeholder="e.g., Ultra-HD 4K Monitor">
+
+                <label for="description">Description</label>
+                <textarea id="description" placeholder="Detailed product description..."></textarea>
+
+                <label for="category">Category</label>
+                <select id="category">
+                    <option>Electronics</option>
+                    <option>Groceries</option>
+                    <option>Fashion</option>
+                </select>
+            </div>
+
+            <div class="section-card">
+                <h2>Product Media</h2>
+                <div class="image-upload-area">
+                    Drag & Drop Images Here or <input type="file" multiple accept="image/*">
+                </div>
+                <div class="image-preview">
+                    <div>Image 1</div>
+                    <div>Image 2</div>
+                    <div>Image 3</div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <h2>Pricing & Stock</h2>
+                <label for="price">Price ($)</label>
+                <input type="number" id="price" required min="0.01" step="0.01" value="199.99">
+
+                <label for="sku">SKU (Stock Keeping Unit)</label>
+                <input type="text" id="sku" placeholder="e.g., MON-4K-UHD-B" required>
+
+                <label for="stock">Current Stock Count (FR-I.1 Sync Source)</label>
+                <input type="number" id="stock" value="25" min="0" required>
+            </div>
+        </form>
+    </div>
+
+    <div class="sticky-footer">
+        <button type="submit" form="productForm" class="save-btn">Save Product & Go Live</button>
+    </div>
+</body>
+</html>
