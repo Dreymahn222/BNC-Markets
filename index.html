@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supermall Mobile Dashboard</title>
+    <style>
+        /* Mobile-First CSS (Base Styles) */
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #f8f9fa;
+            --text-color: #333;
+            --light-gray: #ccc;
+            --card-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: var(--text-color);
+        }
+
+        /* ------------------ Header & Search Bar ------------------ */
+        .header-sticky {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #fff;
+            padding: 10px 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .location {
+            font-size: 14px;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .location::before { content: '📍'; margin-right: 5px; }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: var(--secondary-color);
+            border-radius: 25px;
+            padding: 8px 15px;
+            border: 1px solid var(--light-gray);
+        }
+        .search-bar input {
+            flex-grow: 1;
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            outline: none;
+        }
+        .search-icon, .mic-icon {
+            font-size: 18px;
+            color: var(--text-color);
+            padding: 0 5px;
+        }
+
+        /* ------------------ Content Sections ------------------ */
+        .container {
+            padding: 0 15px 80px 15px; /* Added padding for bottom nav */
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 20px 0 10px 0;
+        }
+
+        /* Banners */
+        .banner-carousel {
+            height: 120px;
+            background-color: #88d4f7;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Categories (Horizontal Scroll) */
+        .categories-scroll {
+            display: flex;
+            overflow-x: scroll;
+            gap: 15px;
+            padding-bottom: 10px;
+            -webkit-overflow-scrolling: touch;
+        }
+        .categories-scroll::-webkit-scrollbar { display: none; }
+
+        .category-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            min-width: 60px;
+        }
+        .category-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        .category-item span {
+            font-size: 12px;
+            color: var(--text-color);
+        }
+
+        /* Product Grid (Deals/Recommendations) */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            cursor: pointer;
+        }
+        .product-image {
+            width: 100%;
+            height: 120px;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #666;
+        }
+        .product-info {
+            padding: 10px;
+        }
+        .product-name {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .product-price {
+            font-size: 16px;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        .product-vendor {
+            font-size: 11px;
+            color: #666;
+            margin-top: 2px;
+        }
+
+        /* ------------------ Bottom Navigation ------------------ */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background-color: #fff;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 12px;
+            color: var(--text-color);
+            padding: 5px 0;
+            text-decoration: none;
+        }
+        .nav-item.active {
+            color: var(--primary-color);
+        }
+        .nav-icon {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-sticky">
+        <div class="location">
+            Deliver to: 123 Main Street
+        </div>
+        <div class="search-bar">
+            <span class="search-icon">🔍</span>
+            <input type="text" placeholder="Search products, stores, categories..." />
+            <span class="mic-icon">🎤</span>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <div class="banner-carousel">
+            Featured Promotion: 20% Off Fresh Produce!
+        </div>
+
+        <h2 class="section-title">Trending Categories</h2>
+        <div class="categories-scroll">
+            <a href="categories.html" class="category-item">
+                <div class="category-icon">🥕</div><span>Groceries</span>
+            </a>
+            <a href="categories.html" class="category-item">
+                <div class="category-icon">📱</div><span>Electronics</span>
+            </a>
+             <div class="category-item">
+                <div class="category-icon">👕</div><span>Fashion</span>
+            </div>
+            <div class="category-item">
+                <div class="category-icon">🏠</div><span>Home Goods</span>
+            </div>
+            <div class="category-item">
+                <div class="category-icon">💊</div><span>Pharmacy</span>
+            </div>
+            <div class="category-item">
+                <div class="category-icon">🧸</div><span>Toys</span>
+            </div>
+            <div class="category-item">
+                <div class="category-icon">🍕</div><span>Food</span>
+            </div>
+        </div>
+
+        <h2 class="section-title">Shops Near You</h2>
+        <div class="categories-scroll">
+            <a href="vendor_storefront.html" class="category-item">
+                <div class="category-icon" style="background-color: #ffe0b2;">🏪</div><span>Local Market</span>
+            </a>
+            <a href="vendor_storefront.html" class="category-item">
+                <div class="category-icon" style="background-color: #b2ebf2;">🛠️</div><span>Tech Store</span>
+            </a>
+            <div class="category-item">
+                <div class="category-icon" style="background-color: #f8bbd0;">👗</div><span>Boutique</span>
+            </div>
+            <div class="category-item">
+                <div class="category-icon" style="background-color: #c8e6c9;">🪴</div><span>Garden Center</span>
+            </div>
+        </div>
+
+        <h2 class="section-title">Recommended for You</h2>
+        <div class="product-grid">
+            <a href="product_detail.html" class="product-card">
+                <div class="product-image">Product Image Slot</div>
+                <div class="product-info">
+                    <div class="product-name">Organic Apples (5lb Bag)</div>
+                    <div class="product-price">$7.99</div>
+                    <div class="product-vendor">Vendor: Green Grocer</div>
+                </div>
+            </a>
+            <a href="product_detail.html" class="product-card">
+                <div class="product-image">Product Image Slot</div>
+                <div class="product-info">
+                    <div class="product-name">Wireless Headphones</div>
+                    <div class="product-price">$49.50</div>
+                    <div class="product-vendor">Vendor: Elite Electronics</div>
+                </div>
+            </a>
+            <a href="product_detail.html" class="product-card">
+                <div class="product-image">Product Image Slot</div>
+                <div class="product-info">
+                    <div class="product-name">Cotton T-Shirt (Blue)</div>
+                    <div class="product-price">$19.99</div>
+                    <div class="product-vendor">Vendor: Style House</div>
+                </div>
+            </a>
+             <a href="product_detail.html" class="product-card">
+                <div class="product-image">Product Image Slot</div>
+                <div class="product-info">
+                    <div class="product-name">Stainless Steel Water Bottle</div>
+                    <div class="product-price">$12.00</div>
+                    <div class="product-vendor">Vendor: Home Goods Hub</div>
+                </div>
+            </a>
+        </div>
+    </div> 
+
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item active">
+            <span class="nav-icon">🏠</span>
+            <span>Home</span>
+        </a>
+        <a href="categories.html" class="nav-item">
+            <span class="nav-icon">🏷️</span>
+            <span>Categories</span>
+        </a>
+        <a href="cart.html" class="nav-item">
+            <span class="nav-icon">🛒</span>
+            <span>Cart</span>
+        </a>
+        <a href="account.html" class="nav-item">
+            <span class="nav-icon">👤</span>
+            <span>Account</span>
+        </a>
+    </nav>
+
+    <script>
+        // Simple JS for navigation state or banner carousel
+    </script>
+
+</body>
+</html>
