@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Login - Supermall</title>
+    <style>
+        :root {
+            --primary-color: #ff9800; /* Vendor Accent Color */
+            --secondary-color: #f8f8f8;
+            --text-color: #333;
+            --input-border: #ccc;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+        .auth-container {
+            width: 100%;
+            max-width: 350px;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+        input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid var(--input-border);
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        .primary-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .alt-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .alt-link a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <h1>Vendor Portal</h1>
+
+        <form id="vendorLoginForm">
+            <input type="email" id="email" placeholder="Business Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit" class="primary-btn">Log In (FR-V.1)</button>
+        </form>
+
+        <div class="alt-link">
+            <a href="#">Forgot Password?</a>
+        </div>
+        <div class="alt-link">
+            New Vendor? <a href="#">Start Registration</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('vendorLoginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Placeholder for secure vendor login check
+            alert('Vendor Login Attempted.');
+            // On success:
+            window.location.href = 'vendor_dashboard.html'; 
+        });
+    </script>
+</body>
+</html>
