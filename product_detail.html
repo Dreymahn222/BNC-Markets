@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail - Supermall</title>
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #f8f9fa;
+            --text-color: #333;
+            --rating-star: #ffc107;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding-bottom: 80px; /* Space for sticky button */
+            background-color: #fff;
+            color: var(--text-color);
+        }
+        .header {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            z-index: 10;
+        }
+        .header a {
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border-radius: 50%;
+            padding: 8px;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .image-gallery {
+            width: 100%;
+            height: 300px;
+            background-color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .content {
+            padding: 0 15px;
+        }
+        .product-name { font-size: 24px; margin-bottom: 5px; }
+        .product-price { font-size: 28px; color: var(--primary-color); font-weight: bold; margin-bottom: 15px; }
+        .vendor-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--secondary-color);
+        }
+        .vendor-info a { color: var(--primary-color); text-decoration: none; font-weight: bold; }
+        .rating { color: var(--rating-star); font-weight: bold; }
+        .description-section { margin-bottom: 20px; }
+        .description-section h3 { font-size: 18px; margin-bottom: 10px; }
+        .description-text { line-height: 1.6; font-size: 14px; }
+        .variation-selector { margin-bottom: 20px; }
+        .variation-selector label { display: block; font-weight: bold; margin-bottom: 10px; }
+        .swatch {
+            display: inline-block;
+            padding: 8px 15px;
+            border: 1px solid var(--text-color);
+            border-radius: 20px;
+            margin-right: 10px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .swatch.selected {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        .sticky-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .quantity-picker {
+            display: flex;
+            align-items: center;
+        }
+        .qty-btn {
+            background: var(--secondary-color);
+            border: none;
+            padding: 8px 12px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .qty-display {
+            padding: 0 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .add-to-cart-btn {
+            padding: 15px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html">←</a>
+    </div>
+
+    <div class="image-gallery">
+        Product Image Placeholder (Swipe to see more)
+    </div>
+
+    <div class="content">
+        <h1 class="product-name">Premium Noise-Cancelling Headphones</h1>
+        <div class="product-price">$199.99</div>
+
+        <div class="vendor-info">
+            <a href="vendor_storefront.html">Sold by: Elite Electronics</a>
+            <span class="rating">⭐ 4.8 (256 reviews)</span>
+        </div>
+
+        <div class="variation-selector">
+            <label>Color</label>
+            <div class="options">
+                <span class="swatch selected" data-color="Black">Black</span>
+                <span class="swatch" data-color="Silver">Silver</span>
+                <span class="swatch" data-color="Red">Red</span>
+            </div>
+        </div>
+
+        <div class="description-section">
+            <h3>Product Description</h3>
+            <p class="description-text">Experience industry-leading noise cancellation and superb sound quality. These headphones offer 30 hours of battery life and a comfortable, lightweight design for all-day listening. Ship from vendor's local warehouse.</p>
+        </div>
+
+        <div class="description-section">
+            <h3>Delivery Estimate</h3>
+            <p><strong>Standard:</strong> 1-2 Hours (Available Now)</p>
+            <p><strong>Express:</strong> 30 Minutes (+$5.00)</p>
+        </div>
+    </div>
+
+    <div class="sticky-footer">
+        <div class="quantity-picker">
+            <button class="qty-btn" id="decreaseQty">-</button>
+            <span class="qty-display" id="qtyDisplay">1</span>
+            <button class="qty-btn" id="increaseQty">+</button>
+        </div>
+        <button class="add-to-cart-btn">Add to Cart</button>
+    </div>
+
+    <script>
+        // Quantity Picker Logic
+        let quantity = 1;
+        const qtyDisplay = document.getElementById('qtyDisplay');
+
+        document.getElementById('increaseQty').addEventListener('click', () => {
+            quantity++;
+            qtyDisplay.textContent = quantity;
+        });
+
+        document.getElementById('decreaseQty').addEventListener('click', () => {
+            if (quantity > 1) {
+                quantity--;
+                qtyDisplay.textContent = quantity;
+            }
+        });
+
+        // Add to Cart Action
+        document.querySelector('.add-to-cart-btn').addEventListener('click', () => {
+            alert(`${quantity} item(s) added to cart!`);
+            window.location.href = 'cart.html';
+        });
+
+        // Variation Swatch Selector (Placeholder)
+        document.querySelectorAll('.swatch').forEach(swatch => {
+            swatch.addEventListener('click', () => {
+                document.querySelectorAll('.swatch').forEach(s => s.classList.remove('selected'));
+                swatch.classList.add('selected');
+                console.log(`Variation selected: ${swatch.getAttribute('data-color')}`);
+            });
+        });
+    </script>
+</body>
+</html>
