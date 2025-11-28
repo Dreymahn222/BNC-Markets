@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Electronics - Supermall</title>
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #f8f9fa;
+            --text-color: #333;
+            --rating-star: #ffc107;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+        }
+        .header-banner {
+            height: 150px;
+            background: url('vendor-banner-placeholder.jpg') center/cover;
+            background-color: #343a40;
+            position: relative;
+        }
+        .back-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            font-size: 24px;
+            text-decoration: none;
+            background: rgba(0,0,0,0.5);
+            border-radius: 50%;
+            padding: 5px 10px;
+        }
+        .vendor-logo {
+            width: 80px;
+            height: 80px;
+            background-color: white;
+            border: 3px solid white;
+            border-radius: 10px;
+            position: absolute;
+            bottom: -40px;
+            left: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .vendor-details {
+            padding: 50px 15px 15px 15px;
+            background: white;
+        }
+        .vendor-details h1 { font-size: 22px; margin: 0 0 5px 80px; }
+        .rating-info { font-size: 14px; margin-left: 80px; color: #666; }
+        .rating-star { color: var(--rating-star); }
+        /* Tabs for navigation */
+        .tabs {
+            display: flex;
+            background: white;
+            border-bottom: 1px solid var(--secondary-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .tab-item {
+            flex-grow: 1;
+            text-align: center;
+            padding: 12px 0;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .tab-item.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+        .tab-content { padding: 15px; }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        /* Product card styles simplified for brevity */
+        .product-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            text-decoration: none;
+            color: var(--text-color);
+            overflow: hidden;
+        }
+        .product-image { height: 100px; background-color: var(--light-gray); }
+        .product-info { padding: 8px; }
+        .info-block { margin-bottom: 15px; font-size: 14px; line-height: 1.5; }
+
+    </style>
+</head>
+<body>
+
+    <div class="header-banner">
+        <a href="index.html" class="back-btn">←</a>
+        <div class="vendor-logo">EE</div>
+    </div>
+
+    <div class="vendor-details">
+        <h1>Elite Electronics</h1>
+        <div class="rating-info">
+            <span class="rating-star">⭐⭐⭐⭐⭐</span> 4.8 (256 reviews)
+        </div>
+    </div>
+
+    <div class="tabs">
+        <div class="tab-item active" data-tab="products">Products</div>
+        <div class="tab-item" data-tab="info">Info</div>
+        <div class="tab-item" data-tab="reviews">Reviews</div>
+    </div>
+
+    <div class="tab-content" id="products">
+        <h3>Best Sellers</h3>
+        <div class="products-grid">
+            <a href="product_detail.html" class="product-card">
+                <div class="product-image"></div>
+                <div class="product-info">Headphones - $199.99</div>
+            </a>
+             <a href="product_detail.html" class="product-card">
+                <div class="product-image"></div>
+                <div class="product-info">Webcam - $49.00</div>
+            </a>
+            </div>
+    </div>
+
+    <div class="tab-content" id="info" style="display: none;">
+        <h3>Store Information</h3>
+        <div class="info-block">
+            <strong>Operating Hours:</strong> 9:00 AM - 6:00 PM (Mon-Sat)
+        </div>
+        <div class="info-block">
+            <strong>Delivery Zone:</strong> 5km radius from store location.
+        </div>
+        <div class="info-block">
+            <strong>Address:</strong> 456 Tech Lane, City Center.
+        </div>
+    </div>
+
+    <div class="tab-content" id="reviews" style="display: none;">
+        <h3>Customer Reviews (256)</h3>
+        <p>User A: ⭐⭐⭐⭐⭐ - Great delivery speed and quality product!</p>
+        <p>User B: ⭐⭐⭐⭐ - Good, but a bit pricey on shipping.</p>
+    </div>
+
+    <script>
+        document.querySelectorAll('.tab-item').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs and hide all content
+                document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
+
+                // Activate clicked tab and show relevant content
+                this.classList.add('active');
+                document.getElementById(this.getAttribute('data-tab')).style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>
