@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Dispute Resolution</title>
+    <style>
+        /* (Base styles reused from admin_dashboard.html for consistency) */
+        :root { --primary-color: #5d5dff; --secondary-color: #f4f7f9; --text-color: #333; --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); --alert-bg: #fff3cd; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; display: flex; background-color: var(--secondary-color); color: var(--text-color); }
+        .sidebar { width: 220px; background: #2c3e50; color: white; height: 100vh; position: fixed; }
+        .logo { text-align: center; font-size: 24px; font-weight: bold; margin-bottom: 30px; color: var(--primary-color); padding: 20px 0; }
+        .nav-link { display: block; padding: 12px 20px; color: #bdc3c7; text-decoration: none; transition: background 0.2s; }
+        .nav-link:hover, .nav-link.active { background: #34495e; color: white; border-left: 4px solid var(--primary-color); padding-left: 16px; }
+        .main-content { margin-left: 220px; flex-grow: 1; padding: 30px; }
+        .header h1 { font-size: 28px; margin: 0 0 20px 0; }
+        
+        /* Dispute Styles */
+        .dispute-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+        .dispute-log, .resolution-panel {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+        }
+        .dispute-log h2, .resolution-panel h2 {
+            font-size: 20px; margin-top: 0; padding-bottom: 10px; border-bottom: 1px solid #eee; margin-bottom: 15px;
+        }
+        .dispute-meta {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: var(--alert-bg);
+            color: #856404;
+        }
+        .timeline {
+            border-left: 2px solid #ccc;
+            padding-left: 15px;
+        }
+        .timeline-item { margin-bottom: 20px; position: relative; }
+        .timeline-item::before {
+            content: '•';
+            position: absolute;
+            left: -20px;
+            font-size: 20px;
+            color: var(--primary-color);
+        }
+        .timeline-item strong { display: block; }
+        .log-note { font-size: 14px; margin-top: 5px; }
+        .resolution-buttons button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .refund { background-color: #007bff; color: white; }
+        .chargeback { background-color: #dc3545; color: white; }
+        .memo-field { width: 100%; min-height: 100px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <div class="logo">Supermall Admin</div>
+        <a href="admin_dashboard.html" class="nav-link">🏠 Dashboard</a>
+        <a href="admin_vendor_review.html" class="nav-link">📝 Vendor Review</a>
+        <a href="admin_vendor_manage.html" class="nav-link">🏢 Vendor Management</a>
+        <a href="admin_logistics.html" class="nav-link">🚚 Logistics View</a>
+        <a href="admin_disputes.html" class="nav-link active">⚠️ Disputes (FR-A.3)</a>
+        <a href="admin_analytics.html" class="nav-link">📈 Analytics</a>
+    </nav>
+
+    <div class="main-content">
+        <header class="header">
+            <h1>Dispute Resolution: Order #1029</h1>
+        </header>
+
+        <div class="dispute-grid">
+            <div class="dispute-log">
+                <h2>Dispute Details: Wrong Item Delivered</h2>
+                <div class="dispute-meta">
+                    <strong>Customer:</strong> Jane Doe | **Vendor:** Green Grocer | **Date Filed:** 2025-11-27
+                    <br> **Claim Amount:** $15.50 (Cost of missing item)
+                </div>
+                
+                <p>The customer claims they received organic apples instead of the organic bananas they ordered. The vendor insists the order was correctly picked.</p>
+
+                <h2>Internal Timeline</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <strong>2025-11-27 10:30 AM:</strong> Dispute initiated by Customer.
+                    </div>
+                    <div class="timeline-item">
+                        <strong>2025-11-27 11:45 AM:</strong> Vendor response received (Claiming correct fulfillment).
+                    </div>
+                    <div class="timeline-item">
+                        <strong>2025-11-27 01:00 PM:</strong> Logistics check complete - Driver photo does not clearly show contents of bag.
+                    </div>
+                    <div class="timeline-item">
+                        <strong>2025-11-28 08:00 AM:</strong> **Admin Action:** Investigation started by Analyst A.
+                    </div>
+                </div>
+            </div>
+
+            <div class="resolution-panel">
+                <h2>Resolution Actions (FR-A.3)</h2>
+                
+                <textarea class="memo-field" placeholder="Final findings and resolution notes..."></textarea>
+                
+                <label style="font-size: 14px; margin-bottom: 5px;">Refund Amount to Customer:</label>
+                <input type="number" value="15.50" min="0" style="padding: 10px; width: 100%; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
+
+                <div class="resolution-buttons">
+                    <button class="refund" onclick="alert('Full Refund Processed to Customer.')">Process Customer Refund</button>
+                    <button style="background-color: #ffc107; color: #333;">Issue Vendor Credit</button>
+                    <button class="chargeback" onclick="alert('Formal Warning Issued to Vendor.')">Issue Vendor Warning</button>
+                    <button style="background-color: #6c757d; color: white;">Close Dispute (No Action)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
