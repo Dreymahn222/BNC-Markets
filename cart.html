@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - Supermall</title>
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #f8f9fa;
+            --text-color: #333;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding-bottom: 80px;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+        }
+        .header { padding: 15px; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .header h1 { margin: 0; font-size: 22px; }
+        .cart-container { padding: 15px; }
+        .vendor-group {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .vendor-header {
+            font-weight: bold;
+            font-size: 16px;
+            color: var(--primary-color);
+            border-bottom: 1px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+        .item-card {
+            display: flex;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+        .item-image { width: 60px; height: 60px; background: #ccc; border-radius: 5px; margin-right: 10px; }
+        .item-details { flex-grow: 1; }
+        .item-price { font-weight: bold; color: var(--text-color); }
+        .qty-controls { display: flex; align-items: center; font-size: 14px; }
+        .qty-controls button { background: none; border: 1px solid #ccc; width: 20px; height: 20px; border-radius: 50%; margin: 0 5px; cursor: pointer; }
+
+        .summary-card {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            padding: 15px;
+        }
+        .summary-row { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 5px; }
+        .summary-total { font-weight: bold; font-size: 18px; margin-top: 10px; }
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Your Cart (4 items)</h1>
+    </div>
+
+    <div class="cart-container">
+        <div class="vendor-group">
+            <div class="vendor-header">Vendor: Green Grocer (Subtotal: $15.50)</div>
+            <div class="item-card">
+                <div class="item-image"></div>
+                <div class="item-details">
+                    <div>Organic Bananas</div>
+                    <div class="item-price">$0.69 x 5 lbs</div>
+                </div>
+                <div class="qty-controls">
+                    <button>-</button><span>5</span><button>+</button>
+                </div>
+            </div>
+            <div class="item-card">
+                <div class="item-image"></div>
+                <div class="item-details">
+                    <div>Whole Milk (Gallon)</div>
+                    <div class="item-price">$4.99</div>
+                </div>
+                 <div class="qty-controls">
+                    <button>-</button><span>1</span><button>+</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="vendor-group">
+            <div class="vendor-header">Vendor: Elite Electronics (Subtotal: $199.99)</div>
+            <div class="item-card">
+                <div class="item-image"></div>
+                <div class="item-details">
+                    <div>Noise-Cancelling Headphones</div>
+                    <div class="item-price">$199.99</div>
+                </div>
+                <div class="qty-controls">
+                    <button>-</button><span>1</span><button>+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="summary-card">
+        <div class="summary-row"><span>Subtotal:</span> <span>$215.49</span></div>
+        <div class="summary-row"><span>Delivery (Green Grocer):</span> <span>$4.50</span></div>
+        <div class="summary-row"><span>Delivery (Elite Electronics):</span> <span>$7.50</span></div>
+        <div class="summary-row"><span>Platform Fee:</span> <span>$2.00</span></div>
+        <div class="summary-total summary-row"><span>Grand Total:</span> <span>$229.49</span></div>
+        <a href="checkout_delivery.html"><button class="checkout-btn">Proceed to Checkout</button></a>
+    </div>
+
+    <script>
+        // Simple JS for quantity controls (in a real app, this updates state and total)
+        document.querySelectorAll('.qty-controls button').forEach(button => {
+            button.addEventListener('click', function() {
+                const span = this.parentNode.querySelector('span');
+                let qty = parseInt(span.textContent);
+                if (this.textContent === '+') {
+                    qty++;
+                } else if (this.textContent === '-' && qty > 1) {
+                    qty--;
+                }
+                span.textContent = qty;
+                // In a real app, trigger a cart recalculation here.
+            });
+        });
+    </script>
+</body>
+</html>
