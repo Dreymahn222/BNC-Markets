@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Active Route</title>
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --text-color: #333;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        /* Top Instruction Bar */
+        .instruction-bar {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            z-index: 10;
+        }
+        /* Map Area */
+        .map-area {
+            flex-grow: 1;
+            background: #e6f7ff; /* Placeholder for map */
+            position: relative;
+        }
+        .map-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            font-size: 24px;
+            color: #555;
+            flex-direction: column;
+        }
+        /* Action Panel */
+        .action-panel {
+            background: white;
+            padding: 15px;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+        .current-step {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .current-step strong { color: var(--primary-color); }
+        .action-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .call-btn {
+            background-color: #007bff;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="instruction-bar" id="instructionBar">
+        Head East on Elm St. (2 min)
+    </div>
+
+    <div class="map-area">
+        <div class="map-placeholder">
+            🗺️ Optimized Route Map (FR-D.3)
+            <small style="font-size: 14px; margin-top: 10px;">Showing directions to Elite Electronics</small>
+        </div>
+    </div>
+
+    <div class="action-panel">
+        <div class="current-step">
+            Current Stop: <strong>Pickup at Elite Electronics</strong>
+            <p style="font-size: 14px; color: #666; margin: 5px 0 10px 0;">Items: 2 (Fragile)</p>
+        </div>
+        
+        <button class="action-btn" onclick="window.location.href='driver_pickup_confirm.html'">
+            Arrived at Vendor
+        </button>
+        <button class="action-btn call-btn">
+            Call Vendor
+        </button>
+    </div>
+</body>
+</html>
