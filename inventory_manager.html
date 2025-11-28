@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Manager - Supermall</title>
+    <style>
+        :root {
+            --primary-color: #ff9800;
+            --secondary-color: #f8f8f8;
+            --text-color: #333;
+            --danger-color: #dc3545;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding-bottom: 80px;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+        }
+        .header {
+            padding: 15px;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 { margin: 0; font-size: 20px; }
+        .content { padding: 15px; }
+        .inventory-list {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .inventory-item {
+            padding: 15px;
+            border-bottom: 1px solid var(--secondary-color);
+        }
+        .inventory-item:last-child { border-bottom: none; }
+        .product-info {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        .stock-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr; /* Stock, Min Stock, Suggested Reorder */
+            gap: 10px;
+            margin-top: 10px;
+            font-size: 12px;
+        }
+        .stock-controls label { display: block; font-weight: normal; color: #666; margin-bottom: 3px; }
+        .stock-controls input {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        .alert-setting input { border-color: var(--danger-color); }
+        .reorder-suggested { color: #007bff; font-weight: bold; }
+        
+        /* Sticky Footer */
+        .sticky-footer {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: white; box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            padding: 15px;
+        }
+        .save-btn {
+            width: 100%; padding: 15px; background-color: var(--primary-color);
+            color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <a href="vendor_dashboard.html">←</a>
+        <h1>Inventory Manager</h1>
+        <button style="background:none; border:none; color:var(--primary-color); font-size:14px;">Bulk Update</button>
+    </div>
+
+    <div class="content">
+        <div class="inventory-list">
+            <div class="inventory-item">
+                <div class="product-info">Organic Eggs (Doz) - SKU: EGG-ORG-DZ</div>
+                <div class="stock-controls">
+                    <div>
+                        <label>Current Stock</label>
+                        <input type="number" value="5" min="0" data-sku="EGG-ORG-DZ">
+                    </div>
+                    <div class="alert-setting">
+                        <label>Min Stock Threshold ($S_{min}$)</label>
+                        <input type="number" value="10" min="1" data-sku="EGG-ORG-DZ">
+                    </div>
+                    <div>
+                        <label>Suggested Reorder ($Q_R$)</label>
+                        <div class="reorder-suggested">50</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="inventory-item">
+                <div class="product-info">Wireless Mouse (Black) - SKU: MOUSE-WL-BLK</div>
+                 <div class="stock-controls">
+                    <div>
+                        <label>Current Stock</label>
+                        <input type="number" value="2" min="0" data-sku="MOUSE-WL-BLK">
+                    </div>
+                    <div class="alert-setting">
+                        <label>Min Stock Threshold ($S_{min}$)</label>
+                        <input type="number" value="5" min="1" data-sku="MOUSE-WL-BLK">
+                    </div>
+                    <div>
+                        <label>Suggested Reorder ($Q_R$)</label>
+                        <div class="reorder-suggested">25</div>
+                    </div>
+                </div>
+            </div>
+            
+             <div class="inventory-item">
+                <div class="product-info">Ultra-HD 4K Monitor - SKU: MON-4K-UHD-B</div>
+                 <div class="stock-controls">
+                    <div>
+                        <label>Current Stock</label>
+                        <input type="number" value="25" min="0" data-sku="MON-4K-UHD-B">
+                    </div>
+                    <div>
+                        <label>Min Stock Threshold ($S_{min}$)</label>
+                        <input type="number" value="10" min="1" data-sku="MON-4K-UHD-B">
+                    </div>
+                    <div>
+                        <label>Suggested Reorder ($Q_R$)</label>
+                        <div class="reorder-suggested">15</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sticky-footer">
+        <button class="save-btn">Save All Inventory Changes</button>
+    </div>
+
+    <script>
+        // Placeholder for JS that would monitor stock and calculate Q_R
+        function calculateReorderQuantity(currentStock, minStock, salesVelocity) {
+            // Simplified formula: (Sales Velocity * Lead Time) + Safety Stock - Current Stock
+            // For demo, we'll use a fixed calculation based on the current shortfall and sales velocity
+            if (currentStock < minStock) {
+                // Example: Reorder = (Min Stock + (Sales Velocity * 5 days))
+                const dailySales = salesVelocity || 5; // Default velocity for demo
+                return (minStock + (dailySales * 5));
+            }
+            return 0;
+        }
+
+        document.querySelectorAll('.inventory-item').forEach(item => {
+            const currentStockInput = item.querySelector('input[type="number"][data-sku]:nth-child(1)');
+            const minStockInput = item.querySelector('.alert-setting input[type="number"]');
+            const reorderDiv = item.querySelector('.reorder-suggested');
+
+            // Example of dynamic suggested reorder based on input changes
+            const updateReorder = () => {
+                const stock = parseInt(currentStockInput.value) || 0;
+                const min = parseInt(minStockInput.value) || 0;
+                
+                // Note: Real sales velocity data needed here. Using a hardcoded example velocity.
+                let suggested = 0;
+                if (stock < min) {
+                    // If low, suggest enough to reach 2x min stock + buffer
+                    suggested = (min * 2) - stock; 
+                }
+                reorderDiv.textContent = suggested > 0 ? suggested : 0;
+            };
+
+            currentStockInput.addEventListener('input', updateReorder);
+            minStockInput.addEventListener('input', updateReorder);
+            updateReorder(); // Initial calculation
+        });
+
+        document.querySelector('.save-btn').addEventListener('click', () => {
+             alert('Inventory and Stock Thresholds Saved! Data will sync in real-time (FR-I.1).');
+        });
+    </script>
+</body>
+</html>
