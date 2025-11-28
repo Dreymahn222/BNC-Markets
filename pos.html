@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor POS - Supermall</title>
+    <style>
+        :root {
+            --primary-color: #ff9800;
+            --secondary-color: #f8f8f8;
+            --pos-bg: #4c4c4c;
+            --pos-accent: #00bcd4;
+            --text-color: #333;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+        }
+        .pos-container {
+            display: flex;
+            height: 100vh;
+            flex-direction: column; /* Mobile Default: Stacked */
+        }
+        /* Tablet/Desktop View: Side-by-Side */
+        @media (min-width: 768px) {
+            .pos-container {
+                flex-direction: row;
+            }
+            .transaction-panel { flex: 0 0 350px; }
+            .product-panel { flex-grow: 1; }
+        }
+
+        /* --- Transaction Panel (Cart and Checkout) --- */
+        .transaction-panel {
+            background: var(--pos-bg);
+            color: white;
+            padding: 20px;
+            overflow-y: auto;
+            min-height: 250px; /* Ensures visibility on mobile */
+        }
+        .cart-title { font-size: 22px; margin-bottom: 15px; }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .cart-item-name { flex-grow: 1; }
+        .cart-item-qty { margin: 0 10px; color: var(--pos-accent); }
+        .summary-block {
+            border-top: 1px dashed white;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+        .summary-row { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .summary-total { font-size: 24px; font-weight: bold; }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--pos-accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        
+        /* --- Product Panel (Catalog and Search) --- */
+        .product-panel {
+            flex-grow: 1;
+            padding: 20px;
+            background: white;
+            overflow-y: auto;
+        }
+        .pos-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .pos-header input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            flex-grow: 1;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+        .pos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+        }
+        .product-tile {
+            background: var(--secondary-color);
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+        .product-tile:hover { background: #e0e0e0; }
+        .tile-price { font-weight: bold; color: var(--primary-color); margin-top: 5px; }
+    </style>
+</head>
+<body>
+
+    <div class="pos-container">
+        <div class="transaction-panel">
+            <div class="cart-title">Current Transaction</div>
+            
+            <div id="cartItems">
+                <div class="cart-item">
+                    <span class="cart-item-name">Organic Apples (5 lb)</span>
+                    <span class="cart-item-qty">x 2</span>
+                    <span>$15.98</span>
+                </div>
+                <div class="cart-item">
+                    <span class="cart-item-name">Wireless Mouse</span>
+                    <span class="cart-item-qty">x 1</span>
+                    <span>$49.50</span>
+                </div>
+            </div>
+
+            <div class="summary-block">
+                <div class="summary-row"><span>Subtotal:</span> <span>$65.48</span></div>
+                <div class="summary-row"><span>Tax (5%):</span> <span>$3.27</span></div>
+                <div class="summary-total summary-row"><span>TOTAL:</span> <span>$68.75</span></div>
+            </div>
+
+            <button class="checkout-btn" onclick="openPaymentModal()">Process Payment (FR-V.5)</button>
+        </div>
+
+        <div class="product-panel">
+            <div class="pos-header">
+                <input type="text" placeholder="Scan Barcode or Search by SKU (FR-V.4)" id="posSearch">
+                <button style="background:var(--primary-color); color:white; padding:10px 15px; border:none; border-radius:5px;">Scan</button>
+            </div>
+
+            <h2>Popular Items</h2>
+            <div class="pos-grid">
+                <div class="product-tile" data-name="Organic Apples" data-price="7.99">
+                    <span>🍎 Apples</span>
+                    <div class="tile-price">$7.99</div>
+                </div>
+                <div class="product-tile" data-name="Headphones" data-price="199.99">
+                    <span>🎧 Headphones</span>
+                    <div class="tile-price">$199.99</div>
+                </div>
+                <div class="product-tile" data-name="Coffee Beans" data-price="12.50">
+                    <span>☕ Coffee Beans</span>
+                    <div class="tile-price">$12.50</div>
+                </div>
+                 <div class="product-tile" data-name="Water Bottle" data-price="15.00">
+                    <span>💧 Water Bottle</span>
+                    <div class="tile-price">$15.00</div>
+                </div>
+                </div>
+        </div>
+    </div>
+
+    <div id="paymentModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999; justify-content:center; align-items:center;">
+        <div style="background:white; padding:30px; border-radius:10px; width:80%; max-width:400px; text-align:center;">
+            <h3>Total Due: $68.75</h3>
+            <button style="padding:10px; width:100%; margin-bottom:10px; background:#4CAF50; color:white; border:none; border-radius:5px;">Pay with Card</button>
+            <button style="padding:10px; width:100%; margin-bottom:10px; background:#607D8B; color:white; border:none; border-radius:5px;">Pay with Cash</button>
+            <button onclick="document.getElementById('paymentModal').style.display='none'" style="margin-top:15px; background:none; border:none; color:#999;">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        function addItemToCart(name, price) {
+            const cartItems = document.getElementById('cartItems');
+            // Simplified logic: always adds a new item for the demo
+            const newItem = document.createElement('div');
+            newItem.className = 'cart-item';
+            newItem.innerHTML = `
+                <span class="cart-item-name">${name}</span>
+                <span class="cart-item-qty">x 1</span>
+                <span>$${price.toFixed(2)}</span>
+            `;
+            cartItems.appendChild(newItem);
+            alert(`${name} added to cart.`);
+            // A real system would update the total summary here
+        }
+
+        document.querySelectorAll('.product-tile').forEach(tile => {
+            tile.addEventListener('click', () => {
+                const name = tile.getAttribute('data-name');
+                const price = parseFloat(tile.getAttribute('data-price'));
+                addItemToCart(name, price);
+            });
+        });
+
+        function openPaymentModal() {
+             document.getElementById('paymentModal').style.display='flex';
+        }
+    </script>
+</body>
+</html>
