@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Reports - Supermall</title>
+    <style>
+        :root {
+            --primary-color: #ff9800;
+            --secondary-color: #f8f8f8;
+            --text-color: #333;
+            --success-color: #28a745;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding-bottom: 60px;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+        }
+        .header {
+            padding: 15px;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .header h1 { margin: 0; font-size: 22px; color: var(--primary-color); }
+        .content { padding: 15px; }
+        .section-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .section-card h2 { font-size: 18px; margin-top: 0; border-bottom: 1px solid var(--secondary-color); padding-bottom: 10px; margin-bottom: 15px; }
+        
+        /* Financial Metrics */
+        .metric-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .metric-box {
+            background: var(--secondary-color);
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .metric-label { font-size: 14px; color: #666; margin-bottom: 5px; }
+        .metric-value { font-size: 20px; font-weight: bold; color: var(--text-color); }
+        
+        /* Payout Table */
+        .payout-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        .payout-table th, .payout-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        .payout-table th { background-color: var(--secondary-color); font-weight: bold; }
+        .status-paid { color: var(--success-color); font-weight: bold; }
+        .status-pending { color: var(--primary-color); font-weight: bold; }
+
+        /* Chart Placeholder */
+        .chart-placeholder {
+            height: 200px;
+            background: #e0f2f1;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+
+        /* (Bottom Nav styles reused from vendor_dashboard.html) */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0; height: 60px;
+            background-color: white; box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+            display: flex; justify-content: space-around; align-items: center; z-index: 1000;
+        }
+        .nav-item { display: flex; flex-direction: column; align-items: center; font-size: 12px; color: var(--text-color); padding: 5px 0; text-decoration: none; }
+        .nav-item.active { color: var(--primary-color); }
+        .nav-icon { font-size: 24px; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <a href="vendor_dashboard.html" style="text-decoration: none; color: #333; margin-right: 10px;">←</a>
+        <h1>Financial Reports</h1>
+    </div>
+
+    <div class="content">
+        <div class="section-card">
+            <h2>Monthly Summary (FR-V.7)</h2>
+            <div class="metric-grid">
+                <div class="metric-box">
+                    <div class="metric-label">Gross Sales</div>
+                    <div class="metric-value">$15,200.00</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-label">Platform Commission (15%)</div>
+                    <div class="metric-value" style="color: #dc3545;">-$2,280.00</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-label">Net Revenue</div>
+                    <div class="metric-value" style="color: var(--success-color);">$12,920.00</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-label">Orders Fulfilled</div>
+                    <div class="metric-value">345</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-card">
+            <h2>Sales Trend (Last 30 Days)</h2>
+            <div class="chart-placeholder">
+                [Bar/Line Chart Placeholder]
+            </div>
+        </div>
+
+        <div class="section-card">
+            <h2>Payout History</h2>
+            <table class="payout-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Nov 1, 2025</td>
+                        <td>$5,100.00</td>
+                        <td class="status-paid">Paid</td>
+                    </tr>
+                    <tr>
+                        <td>Oct 15, 2025</td>
+                        <td>$4,800.00</td>
+                        <td class="status-paid">Paid</td>
+                    </tr>
+                    <tr>
+                        <td>Dec 1, 2025</td>
+                        <td>$5,500.00</td>
+                        <td class="status-pending">Pending</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="vendor_dashboard.html" class="nav-item">
+            <span class="nav-icon">📊</span><span>Dashboard</span>
+        </a>
+        <a href="product_editor.html" class="nav-item">
+            <span class="nav-icon">📦</span><span>Products</span>
+        </a>
+        <a href="pos.html" class="nav-item">
+            <span class="nav-icon">💰</span><span>POS</span>
+        </a>
+        <a href="vendor_reports.html" class="nav-item active">
+            <span class="nav-icon">📋</span><span>Reports</span>
+        </a>
+    </nav>
+</body>
+</html>
